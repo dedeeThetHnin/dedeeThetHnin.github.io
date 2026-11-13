@@ -158,13 +158,15 @@ body {
 }
 
 /* HERO */
+/* HERO */
 .hero-section {
-  min-height: 94vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 130px;
+  padding-top: 200px;
+  padding-bottom: 80px;
 }
 
 .hero-title {

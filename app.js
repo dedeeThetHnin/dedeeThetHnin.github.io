@@ -102,6 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     : ""
                 }
                 ${
+                  p.videoUrl
+                    ? `<a href="${p.videoUrl}" target="_blank" rel="noopener noreferrer" class="project-github-pill">Video ↗</a>`
+                    : ""
+                }
+                ${
                   p.github
                     ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-github-pill">GitHub ↗</a>`
                     : ""
@@ -125,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjectCards();
 
   function toggleProjectsGrid(forceOpen = false) {
+    if (!projectsShowcase) return;
     const isHidden = projectsShowcase.hidden;
     const shouldOpen = forceOpen ? true : isHidden;
 
@@ -138,13 +144,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (shouldOpen) {
-      projectsShowcase.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      setTimeout(() => {
+        (projectsCardTrigger || projectsShowcase).scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 60);
     }
   }
 
   document.querySelectorAll("[data-toggle-projects]").forEach((el) => {
     el.addEventListener("click", (e) => {
-      const isHeroBtn = el.classList.contains("btn-primary");
+      const isHeroBtn = el.classList.contains("btn-primary") || Boolean(el.closest("#home"));
       if (isHeroBtn) {
         e.preventDefault();
         toggleProjectsGrid(true);
@@ -155,7 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
     el.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        toggleProjectsGrid(false);
+        const isHeroBtn = el.classList.contains("btn-primary") || Boolean(el.closest("#home"));
+        toggleProjectsGrid(isHeroBtn);
       }
     });
   });
@@ -167,13 +179,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalClose = document.getElementById("modal-close");
 
   document.querySelectorAll("[data-open-modal]").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      openModal(trigger.getAttribute("data-open-modal"));
+    trigger.addEventListener("click", (e) => {
+      const modalType = trigger.getAttribute("data-open-modal");
+      if (modalType === "projects") {
+        e.preventDefault();
+        const isHeroBtn = trigger.classList.contains("btn-primary") || Boolean(trigger.closest("#home"));
+        toggleProjectsGrid(isHeroBtn);
+        return;
+      }
+      openModal(modalType);
     });
     trigger.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openModal(trigger.getAttribute("data-open-modal"));
+        const modalType = trigger.getAttribute("data-open-modal");
+        if (modalType === "projects") {
+          const isHeroBtn = trigger.classList.contains("btn-primary") || Boolean(trigger.closest("#home"));
+          toggleProjectsGrid(isHeroBtn);
+          return;
+        }
+        openModal(modalType);
       }
     });
   });
@@ -262,6 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           </span>
           <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 4px;">
+            ${
+              proj.videoUrl
+                ? `<a href="${proj.videoUrl}" target="_blank" rel="noopener noreferrer" class="modal-github-link">
+                    Explore more features in the video <span>↗</span>
+                  </a>`
+                : ""
+            }
             ${
               proj.liveUrl
                 ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-github-link">
