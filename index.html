@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thet Hnin Hsu | Portfolio</title>
+  <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Subtle Interactive Background Canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Top Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Primary Navigation">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle Light/Dark Mode" title="Toggle theme">
+        <span id="theme-icon">☾</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. HERO SECTION -->
+    <section id="home" class="section hero-section">
+      <div class="container hero-container">
+        <p class="eyebrow">HEY! MY NAME IS,</p>
+        <h1 class="hero-title">Thet Hnin Hsu</h1>
+        <p class="hero-roles">
+          Software Developer <span class="dot">•</span> Data Analytics <span class="dot">•</span> BTM &amp; Tech Consulting
+        </p>
+        <p class="hero-bio">
+          Third-year Computer Science student at the University of Alberta pursuing a Business Minor, passionate about building user-centered software, data-driven solutions, and bridging technology with business strategy.
+        </p>
+
+        <div class="hero-cta">
+          <button type="button" class="btn btn-primary" data-open-modal="projects">
+            view projects <span class="arrow">↗</span>
+          </button>
+          <a href="assets/ThetHnin_resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            resume <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://github.com/dedeeThetHnin" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="GitHub">
+            GH
+          </a>
+          <a href="https://www.linkedin.com/in/thet-hnin-hsu-051554285/" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="LinkedIn">
+            in
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. EDUCATION SECTION -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">A LITTLE ABOUT MY PATH</p>
+          <h2 class="section-title">education</h2>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-info">
+            <span class="edu-label">PROGRAM</span>
+            <h3 class="edu-program">Bachelor of Science in Computer Science, Business Minor</h3>
+
+            <span class="edu-label">SCHOOL</span>
+            <p class="edu-school">University of Alberta</p>
+            <p class="edu-meta">Edmonton, Alberta · Sep 2024 – Present</p>
+          </div>
+
+          <div class="edu-logo-wrap">
+            <img
+              src="assets/uofa-logo.png"
+              alt="University of Alberta Logo"
+              class="edu-logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="edu-badge-fallback" style="display: none;">
+              <span>U</span>
+              <span>A</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Relevant Courses Accordion -->
+        <div class="courses-wrapper">
+          <button id="courses-toggle" class="courses-toggle-btn" aria-expanded="false">
+            <span>Relevant Courses</span>
+            <span class="chevron">▾</span>
+          </button>
+
+          <div id="courses-panel" class="courses-panel" hidden>
+            <div class="courses-tabs">
+              <button type="button" class="course-tab active" data-year="year1">Year 1</button>
+              <button type="button" class="course-tab" data-year="year2">Year 2</button>
+              <button type="button" class="course-tab" data-year="year3">Year 3 (In Progress)</button>
+            </div>
+            <div id="courses-list" class="courses-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT SECTION (Experiences, Projects, Hobbies) -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">CURIOSITY IN EVERY DIRECTION</p>
+          <h2 class="section-title">about</h2>
+          <p class="section-subtitle">
+            Exploring software engineering, data analytics, business technology management, and creative problem-solving.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Card 1: Experiences -->
+          <article class="about-card" data-open-modal="experiences" tabindex="0" role="button" aria-label="Open experiences and skills">
+            <div class="card-glow"></div>
+            <span class="card-index">01 / WORK</span>
+            <div class="card-icon">▱</div>
+            <h3 class="card-title">experiences</h3>
+            <p class="card-desc">People, research &amp; the skills I bring.</p>
+            <span class="card-action">Open experience &amp; skills ↗</span>
+          </article>
+
+          <!-- Card 2: Projects (Toggles the 2x2 Projects Grid underneath) -->
+          <article id="projects-card-trigger" class="about-card" data-toggle-projects tabindex="0" role="button" aria-expanded="false" aria-controls="projects-showcase">
+            <div class="card-glow"></div>
+            <span class="card-index">02 / MAKING</span>
+            <div class="card-icon">⌘</div>
+            <h3 class="card-title">projects</h3>
+            <p class="card-desc">Thoughtful ideas, built collaboratively.</p>
+            <span id="projects-card-action" class="card-action">Explore projects ↗</span>
+          </article>
+
+          <!-- Card 3: Hobbies -->
+          <article class="about-card" data-open-modal="hobbies" tabindex="0" role="button" aria-label="Open hobbies">
+            <div class="card-glow"></div>
+            <span class="card-index">03 / LIFE</span>
+            <div class="card-icon">♫</div>
+            <h3 class="card-title">hobbies</h3>
+            <p class="card-desc">Creative rituals away from the screen.</p>
+            <span class="card-action">A little more ↗</span>
+          </article>
+        </div>
+
+        <!-- HIDDEN BY DEFAULT: Appears directly below About cards when "projects" is clicked -->
+        <div id="projects-showcase" class="projects-showcase" hidden>
+          <div id="projects-grid" class="projects-grid-2x2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONTACT SECTION -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">MY INBOX IS OPEN</p>
+          <h2 class="section-title">contact</h2>
+          <p class="section-subtitle">want to work together? just reach out!</p>
+        </div>
+
+        <div class="contact-grid">
+          <a href="mailto:thethnin@ualberta.ca?cc=ditracy10@gmail.com" class="contact-card">
+            <span class="contact-icon">✉</span>
+            <h3 class="contact-title">email</h3>
+            <p class="contact-value">thethnin@ualberta.ca</p>
+            <p class="contact-subvalue">ditracy10@gmail.com</p>
+          </a>
+
+          <div class="contact-card">
+            <span class="contact-icon">⌖</span>
+            <h3 class="contact-title">location</h3>
+            <p class="contact-value">Edmonton, Alberta</p>
+          </div>
+
+          <a href="https://github.com/dedeeThetHnin" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-icon">⌘</span>
+            <h3 class="contact-title">GitHub</h3>
+            <p class="contact-value">github.com/dedeeThetHnin</p>
+          </a>
+
+          <a href="https://www.linkedin.com/in/thet-hnin-hsu-051554285/" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-icon">in</span>
+            <h3 class="contact-title">LinkedIn</h3>
+            <p class="contact-value">linkedin.com/in/thet-hnin-hsu</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 Thet Hnin Hsu.</p>
+      <a href="#home" class="back-to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE MODAL OVERLAY (For Experiences, Projects, Hobbies) -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal-close" aria-label="Close modal">✕</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Project Data Files -->
+  <script src="data/projects/eventflow.js"></script>
+  <script src="data/projects/sakura-sonata.js"></script>
+  <script src="data/projects/clinet-web.js"></script>
+  <script src="data/projects/portfolio.js"></script>
+  <script src="data/projects-index.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

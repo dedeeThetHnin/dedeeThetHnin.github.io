@@ -1,0 +1,22 @@
+window.PORTFOLIO_PROJECTS = window.PORTFOLIO_PROJECTS || [];
+window.PORTFOLIO_PROJECTS.push({
+  id: "client-web",
+  number: "03",
+  meta: "Web · Nov 2026",
+  title: "Multimedia Showcase",
+  fullTitle: "Client Portfolio & Multimedia Showcase Web Platform",
+  subtitle: "An editorial portfolio with playful motion.",
+  theme: "theme-mint",
+  github: "https://github.com/dedeeThetHnin", // Replace with your Client Web repo link
+  coverImage: "assets/projects/client-web/cover.png",
+  images: [
+    "assets/projects/client-web/1.png",
+    "assets/projects/client-web/2.png"
+  ],
+  tech: ["HTML5", "CSS3", "JavaScript (ES6+)", "Git", "GitHub Pages"],
+  bullets: [
+    "Built and deployed a custom portfolio website for a digital journalism client using HTML, CSS, JavaScript, and GitHub Pages.",
+    "Designed dynamic UI components, including viewfinder video cards with persistent audio settings and full-scale editorial document viewers.",
+    "Managed end-to-end Git production workflows, modular data structuring, and cross-device visual optimization."
+  ]
+});
